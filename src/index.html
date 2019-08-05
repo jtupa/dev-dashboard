@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <script type="text/javascript">
+  (function (w) {
+    w.CONSTANT = {
+      ALPINE_MOBILE: '14151083',
+      API_URL: 'https://api.zenhub.io',
+    };
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        CONSTANT.TOKEN = this.responseXML.getElementsByTagName("token")[0].childNodes[0].nodeValue;
+      }
+    };
+    xhttp.open("GET", "config.xml", true);
+    xhttp.send();
+  })(window);
+  </script>
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <section>
+  <h1>ZenHub</h1>
+  <button type="button" onclick="getWorkspaces()">Get workspaces</button>
+  <div id="displayWorkspaces"></div>
+  <h2>Board</h2>
+  <div id="displayBoard"></div>
+  <h2>Pipeline</h2>
+  <div id="displayPipeline"></div>
+  
+  <h2>Issue <input id="issueId" type="text" name="issueId" pattern="\d+" title="Only number characters" placeholder="Type issue #">
+  <button onclick="getIssue()">Get</button></h2>
+  <a href="#" target="_blank" class="hidden">View Details</a>
+  <div id="displayIssue"></div>
+  <div id="displayIssueEvents"></div>
+  </section>
+  <section>
+  <h1>Setup</h1>
+  <nav>
+  <a href="https://github.com/ZenHubIO/API">Zenhub API</a>
+  </nav>
+  </section>
+  <template id="my-event"><span></span><span></span><span></span><br></template>
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
